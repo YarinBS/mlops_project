@@ -1,0 +1,12 @@
+# Also install the reqs from requirements.txt
+-r requirements.txt
+
+coverage==7.6.9
+invoke==2.2.0
+mkdocs-material==9.4.6
+mkdocs==1.6.1
+pre-commit==4.1.0
+pytest>=9.0.2
+ruff>=0.14.10
+mkdocstrings-python==1.12.2
+mypy>=1.19.1
