@@ -1,6 +1,5 @@
 import os
 
-import matplotlib.pyplot as plt
 import torch
 from torch.utils.data import TensorDataset
 import typer
@@ -28,19 +27,15 @@ def preprocess_data(raw_data_dir: str, processed_data_dir: str) -> None:
     processed_data_dir (str): Path to save the processed data.
     """
 
-    train_x = torch.cat(
-        [torch.load(os.path.join(raw_data_dir, f"train_images_{i}.pt")) for i in range(6)]
-    )
+    train_x = torch.cat([torch.load(os.path.join(raw_data_dir, f"train_images_{i}.pt")) for i in range(6)])
     train_x = _normalize(train_x.unsqueeze(1).float())
 
-    train_y = torch.cat(
-        [torch.load(os.path.join(raw_data_dir, f"train_target_{i}.pt")) for i in range(6)]
-    )
+    train_y = torch.cat([torch.load(os.path.join(raw_data_dir, f"train_target_{i}.pt")) for i in range(6)])
     train_y = train_y.long()
 
     test_x = torch.load(os.path.join(raw_data_dir, "test_images.pt"))
     test_x = _normalize(test_x.unsqueeze(1).float())
-    
+
     test_y = torch.load(os.path.join(raw_data_dir, "test_target.pt"))
     test_y = test_y.long()
 
@@ -57,12 +52,12 @@ def corrupt_mnist() -> tuple[TensorDataset, TensorDataset]:
     Returns:
     tuple[DataLoader, DataLoader]: Training and testing data loaders.
     """
-    
+
     train_x = torch.load("data/processed/train_images.pt")
     train_y = torch.load("data/processed/train_target.pt")
     test_x = torch.load("data/processed/test_images.pt")
     test_y = torch.load("data/processed/test_target.pt")
-    
+
     train_set = TensorDataset(train_x, train_y)
     test_set = TensorDataset(test_x, test_y)
 

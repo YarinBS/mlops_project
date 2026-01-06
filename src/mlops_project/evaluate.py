@@ -19,7 +19,7 @@ def evaluate(model_checkpoint: str) -> None:
     state_dict = torch.load(model_checkpoint, map_location=DEVICE)
     model = MyAwesomeModel().to(DEVICE)
     model.load_state_dict(state_dict)
-    
+
     _, test_set = corrupt_mnist()
     test_loader = DataLoader(test_set, batch_size=64)
 

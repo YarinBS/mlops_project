@@ -14,7 +14,7 @@ class MyAwesomeModel(nn.Module):
         self.conv3 = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, stride=1)
         self.dropout = nn.Dropout(p=0.5)
         self.fc1 = nn.Linear(in_features=128, out_features=10)
-    
+
     def forward(self, x):
         """
         Forward pass of the model.
@@ -35,6 +35,7 @@ class MyAwesomeModel(nn.Module):
         x = self.dropout(x)
         x = self.fc1(x)
         return x
+
 
 if __name__ == "__main__":
     model = MyAwesomeModel()

@@ -9,6 +9,7 @@ app = typer.Typer()
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
 @app.command()
 def train(
     lr: float = 1e-3,
@@ -35,12 +36,12 @@ def train(
             loss.backward()
             optimizer.step()
             train_loss += loss.item() * x.size(0)
-        
+
         train_loss /= len(train_loader.dataset)
         train_losses.append(train_loss)
 
-        print(f"Epoch {epoch+1}/{epochs}, Train loss: {train_loss:.4f}")
-    
+        print(f"Epoch {epoch + 1}/{epochs}, Train loss: {train_loss:.4f}")
+
     print("Training complete")
     torch.save(model.state_dict(), "trained_model.pth")
 
@@ -53,7 +54,6 @@ def train(
     plt.savefig("training_loss.png")
 
 
-
 @app.command()
 def evaluate(model_checkpoint: str) -> None:
     """Evaluate a trained model."""
@@ -61,7 +61,7 @@ def evaluate(model_checkpoint: str) -> None:
     state_dict = torch.load(model_checkpoint, map_location=DEVICE)
     model = MyAwesomeModel().to(DEVICE)
     model.load_state_dict(state_dict)
-    
+
     _, test_loader = corrupt_mnist()
 
     model.eval()
