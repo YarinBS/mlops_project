@@ -51,3 +51,12 @@ def build_docs(ctx: Context) -> None:
 def serve_docs(ctx: Context) -> None:
     """Serve documentation."""
     ctx.run("uv run mkdocs serve --config-file docs/mkdocs.yaml", echo=True, pty=not WINDOWS)
+
+
+# Git commands
+@task
+def add_commit_push(ctx: Context, message: str) -> None:
+    """Add, commit and push changes to git."""
+    ctx.run("git add .", echo=True, pty=not WINDOWS)
+    ctx.run(f'git commit -m "{message}"', echo=True, pty=not WINDOWS)
+    ctx.run("git push", echo=True, pty=not WINDOWS)
