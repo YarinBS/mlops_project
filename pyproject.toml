@@ -62,3 +62,9 @@ lint.select = ["I"]
 
 [tool.coverage.run]
 omit = ["tests/*"]
+
+[project.scripts]
+train = "mlops_project.train:main"
+evaluate = "mlops_project.evaluate:main"
+visualize = "mlops_project.visualize:main"
+preprocess_data = "mlops_project.data:preprocess_data"

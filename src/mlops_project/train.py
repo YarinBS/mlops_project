@@ -65,5 +65,8 @@ def train(lr: float = 1e-3, epochs: int = 20) -> None:
     plt.savefig("reports/figures/training_loss.png")
 
 
-if __name__ == "__main__":
+def main():
     typer.run(train)
+
+if __name__ == "__main__":
+    main()

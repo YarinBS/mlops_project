@@ -37,5 +37,9 @@ def evaluate(model_checkpoint: str) -> None:
     print(f"Test Accuracy: {accuracy * 100:.2f}%")
 
 
-if __name__ == "__main__":
+def main():
     typer.run(evaluate)
+
+
+if __name__ == "__main__":
+    main()
