@@ -40,6 +40,16 @@ def docker_build(ctx: Context, progress: str = "plain") -> None:
     )
 
 
+@task
+def dvc(ctx: Context, folder: str = "data", message: str = "Add new data") -> None:
+    """Add and push data to DVC remote storage."""
+    ctx.run(f"dvc add {folder}")
+    ctx.run(f"git add {folder}.dvc .gitignore")
+    ctx.run(f"git commit -m '{message}'")
+    ctx.run(f"git push")
+    ctx.run(f"dvc push")
+
+
 # Documentation commands
 @task
 def build_docs(ctx: Context) -> None:
