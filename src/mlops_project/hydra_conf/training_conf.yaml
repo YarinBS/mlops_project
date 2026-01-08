@@ -1,4 +1,4 @@
 lr: 1e-3
-epochs: 20
+epochs: 5
 batch_size: 64
 seed: 42
