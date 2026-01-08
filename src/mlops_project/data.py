@@ -27,10 +27,10 @@ def preprocess_data(raw_data_dir: str, processed_data_dir: str) -> None:
     processed_data_dir (str): Path to save the processed data.
     """
 
-    train_x = torch.cat([torch.load(os.path.join(raw_data_dir, f"train_images_{i}.pt")) for i in range(6)])
+    train_x = torch.cat([torch.load(os.path.join(raw_data_dir, f"train_images_{i}.pt")) for i in range(10)])
     train_x = _normalize(train_x.unsqueeze(1).float())
 
-    train_y = torch.cat([torch.load(os.path.join(raw_data_dir, f"train_target_{i}.pt")) for i in range(6)])
+    train_y = torch.cat([torch.load(os.path.join(raw_data_dir, f"train_target_{i}.pt")) for i in range(10)])
     train_y = train_y.long()
 
     test_x = torch.load(os.path.join(raw_data_dir, "test_images.pt"))
