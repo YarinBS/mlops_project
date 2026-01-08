@@ -1,0 +1,8 @@
+defaults:
+  - model_conf
+  - training_conf
+
+# Paths
+data_dir: "data/processed"
+model_save_path: "models/trained_model.pth"
+figures_dir: "reports/figures"

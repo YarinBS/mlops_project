@@ -1,16 +1,20 @@
+import hydra
+import logging
 import matplotlib.pyplot as plt
+from omegaconf import DictConfig, OmegaConf
+import os
 import torch
 from torch.utils.data import DataLoader
-import typer
 
 from mlops_project.model import MyAwesomeModel
 from mlops_project.data import corrupt_mnist
 
-
+logger = logging.getLogger(__name__)
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-def train(lr: float = 1e-3, epochs: int = 20) -> None:
+@hydra.main(version_base=None, config_path="hydra_conf", config_name="config")
+def train(config: DictConfig) -> None:
     """
     Train the MyAwesomeModel on the corrupted MNIST dataset.
 
@@ -19,16 +23,28 @@ def train(lr: float = 1e-3, epochs: int = 20) -> None:
     epochs (int): Number of training epochs.
     """
 
-    model = MyAwesomeModel().to(DEVICE)
-    train_set, _ = corrupt_mnist()
-    train_loader = DataLoader(train_set, batch_size=64)
+    logger.info(f"Config:\n{OmegaConf.to_yaml(config)}")
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    torch.manual_seed(config.seed)
+
+    model = MyAwesomeModel(
+        in_channels=config.in_channels,
+        out_channels_1=config.out_channels_1,
+        out_channels_2=config.out_channels_2,
+        out_channels_3=config.out_channels_3,
+        kernel_size=config.kernel_size,
+        stride=config.stride,
+        dropout=config.dropout,
+    ).to(DEVICE)
+    train_set, _ = corrupt_mnist()
+    train_loader = DataLoader(train_set, batch_size=config.batch_size)
+
+    optimizer = torch.optim.Adam(model.parameters(), lr=config.lr)
     criterion = torch.nn.CrossEntropyLoss()
 
     train_losses, train_accuracies = [], []
 
-    for epoch in range(epochs):
+    for epoch in range(config.epochs):
         model.train()
         train_loss = 0.0
         train_acc = 0.0
@@ -51,22 +67,19 @@ def train(lr: float = 1e-3, epochs: int = 20) -> None:
         train_acc /= len(train_loader.dataset)
         train_accuracies.append(train_acc)
 
-        print(f"Epoch {epoch + 1}/{epochs}, Train loss: {train_loss:.4f}, Train accuracy: {train_acc:.4f}")
+        logger.info(f"Epoch {epoch + 1}/{config.epochs}, Train loss: {train_loss:.4f}, Train accuracy: {train_acc:.4f}")
 
-    print("Training complete")
-    torch.save(model.state_dict(), "models/trained_model.pth")
+    logger.info("Training complete")
+    torch.save(model.state_dict(), config.model_save_path)
 
     # Plotting training loss
-    plt.plot(range(1, epochs + 1), train_losses, label="Train Loss")
+    plt.plot(range(1, config.epochs + 1), train_losses, label="Train Loss")
     plt.xlabel("Epochs")
     plt.ylabel("Loss")
     plt.title("Training Loss over Epochs")
     plt.legend()
-    plt.savefig("reports/figures/training_loss.png")
+    plt.savefig(os.path.join(config.figures_dir, "training_loss.png"))
 
-
-def main():
-    typer.run(train)
 
 if __name__ == "__main__":
-    main()
+    train()

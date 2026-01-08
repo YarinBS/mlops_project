@@ -1,0 +1,8 @@
+in_channels: 1
+out_channels_1: 32
+out_channels_2: 64
+out_channels_3: 128
+kernel_size: 3
+stride: 1
+dropout: 0.5
+num_classes: 10
