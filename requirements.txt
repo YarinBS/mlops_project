@@ -3,6 +3,6 @@ uvicorn==0.34.0
 matplotlib>=3.10.8
 numpy<2.0
 pandas>=2.3.3
-scikit-learn==1.2.2
+scikit-learn==1.8.0
 torch>=2.9.1
 typer>=0.21.0
