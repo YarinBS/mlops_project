@@ -1,9 +1,9 @@
 import torch
-from torch.utils.data import DataLoader
 import typer
+from torch.utils.data import DataLoader
 
-from mlops_project.model import MyAwesomeModel
 from mlops_project.data import corrupt_mnist
+from mlops_project.model import MyAwesomeModel
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

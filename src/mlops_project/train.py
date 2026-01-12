@@ -1,15 +1,16 @@
-import hydra
 import logging
-import matplotlib.pyplot as plt
-from omegaconf import DictConfig, OmegaConf
 import os
+
+import hydra
+import matplotlib.pyplot as plt
 import pytorch_lightning as pl
 import torch
+from omegaconf import DictConfig, OmegaConf
 from torch.utils.data import DataLoader
-import wandb
 
-from mlops_project.model import MyAwesomeModel, MyAwesoneLightningModel
+import wandb
 from mlops_project.data import corrupt_mnist
+from mlops_project.model import MyAwesomeModel, MyAwesoneLightningModel
 
 logger = logging.getLogger(__name__)
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")

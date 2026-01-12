@@ -1,12 +1,11 @@
 import matplotlib.pyplot as plt
+import torch
+import typer
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
-import torch
 from torch.utils.data import DataLoader
-import typer
 
 from mlops_project.model import MyAwesomeModel
-
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

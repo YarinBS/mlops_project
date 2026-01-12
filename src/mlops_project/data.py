@@ -1,8 +1,8 @@
 import os
 
 import torch
-from torch.utils.data import TensorDataset
 import typer
+from torch.utils.data import TensorDataset
 
 
 def _normalize(tensor: torch.Tensor) -> torch.Tensor:
