@@ -43,7 +43,7 @@ dev = [
     "pre-commit==4.1.0",
     "pytest>=9.0.2",
     "ruff>=0.14.10",
-    "mkdocstrings-python==1.12.2",
+    "mkdocstrings-python==2.0.1",
     "mypy>=1.19.1",
     "snakeviz>=2.2.2",
     "pytest-mock>=3.15.1",
