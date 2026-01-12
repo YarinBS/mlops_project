@@ -18,7 +18,7 @@ ENV UV_LINK_MODE=copy
 RUN --mount=type=cache,target=/root/.cache/uv uv sync
 
 # Set environment variable to ensure Python output is unbuffered
-ENV PYTHONUNBUFFERED=1  
+ENV PYTHONUNBUFFERED=1
 
 # Command to run the training script when the container starts
 ENTRYPOINT ["uv", "run", "src/mlops_project/train.py"]

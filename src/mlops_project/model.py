@@ -9,12 +9,12 @@ class MyAwesomeModel(nn.Module):
     """
 
     def __init__(
-            self, 
-            in_channels: int = 1, 
-            out_channels_1: int = 32, 
-            out_channels_2: int = 64, 
+            self,
+            in_channels: int = 1,
+            out_channels_1: int = 32,
+            out_channels_2: int = 64,
             out_channels_3: int = 128,
-            kernel_size: int = 3, 
+            kernel_size: int = 3,
             stride: int = 1,
             dropout: float = 0.5) -> None:
         super().__init__()
@@ -50,11 +50,11 @@ class MyAwesoneLightningModel(pl.LightningModule):
     def __init__(
             self,
             config=None,
-            in_channels: int = 1, 
-            out_channels_1: int = 32, 
-            out_channels_2: int = 64, 
+            in_channels: int = 1,
+            out_channels_1: int = 32,
+            out_channels_2: int = 64,
             out_channels_3: int = 128,
-            kernel_size: int = 3, 
+            kernel_size: int = 3,
             stride: int = 1,
             dropout: float = 0.5,
             lr: float = 1e-3) -> None:
@@ -78,7 +78,7 @@ class MyAwesoneLightningModel(pl.LightningModule):
 
             self.lr = config.lr
             self.criterion = torch.nn.CrossEntropyLoss()
-    
+
     def forward(self, x):
         x = torch.relu(self.conv1(x))
         x = torch.max_pool2d(x, kernel_size=2, stride=2)
