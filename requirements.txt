@@ -1,5 +1,5 @@
 fastapi==0.115.6
-uvicorn==0.34.0
+uvicorn==0.40.0
 matplotlib>=3.10.8
 numpy<2.0
 pandas>=2.3.3
