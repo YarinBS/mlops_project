@@ -5,10 +5,10 @@ import hydra
 import matplotlib.pyplot as plt
 import pytorch_lightning as pl
 import torch
+import wandb
 from omegaconf import DictConfig, OmegaConf
 from torch.utils.data import DataLoader
 
-import wandb
 from mlops_project.data import corrupt_mnist
 from mlops_project.model import MyAwesomeModel, MyAwesoneLightningModel
 
