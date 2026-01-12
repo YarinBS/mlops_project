@@ -1,7 +1,7 @@
 import torch
 from torch.utils.data import TensorDataset
 
-from mlops_project.data import corrupt_mnist
+import mlops_project.data as data
 
 
 def test_my_dataset(mocker):
@@ -16,7 +16,7 @@ def test_my_dataset(mocker):
 
     mocker.patch('mlops_project.data.corrupt_mnist', return_value=(mock_train, mock_test))
 
-    train, test = corrupt_mnist()
+    train, test = data.corrupt_mnist()
     assert len(train) == 50000
     assert len(test) == 5000
 
