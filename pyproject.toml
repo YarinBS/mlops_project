@@ -46,6 +46,7 @@ dev = [
     "mkdocstrings-python==1.12.2",
     "mypy>=1.19.1",
     "snakeviz>=2.2.2",
+    "pytest-mock>=3.15.1",
 ]
 
 
