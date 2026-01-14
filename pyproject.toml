@@ -23,7 +23,7 @@ dependencies = [
     "matplotlib>=3.10.8",
     "numpy<2.0",
     "pandas>=2.3.3",
-    "scikit-learn==1.2.2",
+    "scikit-learn==1.8.0",
     "torch>=2.6.0,<2.7",
     "torchvision>=0.21.0,<0.22",
     "typer>=0.21.0",
